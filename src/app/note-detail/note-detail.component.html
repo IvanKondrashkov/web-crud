@@ -1,0 +1,32 @@
+<!--Форма для просмотра заметки-->
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/notes']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title><h2>{{note.header}}</h2></mat-card-title>
+      <mat-card-subtitle>{{note.id}}</mat-card-subtitle>
+    </mat-card-header>
+    <!--    Поля с данными о заметки-->
+    <mat-card-content>
+      <dl>
+        <dt>Ключ:</dt>
+        <dd>{{note.id}}</dd>
+        <dt>Заголовок:</dt>
+        <dd>{{note.header}}</dd>
+        <dt>Заметка:</dt>
+        <dd>{{note.note}}</dd>
+      </dl>
+    </mat-card-content>
+    <!--    Кнопки навигации-->
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/note-edit', note.id]"><mat-icon>edit</mat-icon></a>
+      <a mat-flat-button color="warn" (click)="deleteNote(note.id)"><mat-icon>delete</mat-icon></a>
+    </mat-card-actions>
+  </mat-card>
+</div>

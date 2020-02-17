@@ -1,0 +1,33 @@
+<!--Окно для ввода данных о заметке-->
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/notes']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="noteForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Заголовок" formControlName="header"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!noteForm.get('header').valid && noteForm.get('header').touched">Please enter Notes Header</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Заметка" formControlName="note"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!noteForm.get('note').valid && noteForm.get('note').touched">Please enter Note</span>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button type="submit" [disabled]="!noteForm.valid" mat-flat-button color="primary"><mat-icon>Сохранить</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
